@@ -70,6 +70,17 @@ class _NavBarState extends State<NavBar> {
           menuItem('Pinterest', icon: FontAwesomeIcons.pinterest),
           menuItem('YouTube', icon: FontAwesomeIcons.youtube),
           menuItem('LinkedIn', icon: FontAwesomeIcons.linkedin),
+          const SizedBox(height: 20,),
+          const Text(
+            'Built with ❤️ in India',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 12,
+              letterSpacing: 1,
+              color: Colors.grey,
+            ),
+          ),
+          const SizedBox(height: 10,),
         ],
       ),
     );
