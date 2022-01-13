@@ -78,162 +78,95 @@ class _LandingScreenState extends State<LandingScreen> {
       drawer: const NavBar(),
       body: CupertinoPageScaffold(
         child: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              CupertinoSliverNavigationBar(
-                  heroTag: 'navigationLedgers',
-                  largeTitle: Container(
-                    padding: const EdgeInsets.only(right: 12),
-                    child: CupertinoSearchTextField(
-                      onChanged: (String value) {
-                        print('The text has changed to: $value');
-                      },
-                      onSubmitted: (String value) {
-                        print('Submitted text: $value');
-                      },
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
+              return <Widget>[
+                CupertinoSliverNavigationBar(
+                    heroTag: 'navigationLedgers',
+                    largeTitle: Container(
+                      padding: const EdgeInsets.only(right: 12),
+                      child: CupertinoSearchTextField(
+                        onChanged: (String value) {
+                          print('The text has changed to: $value');
+                        },
+                        onSubmitted: (String value) {
+                          print('Submitted text: $value');
+                        },
+                      ),
                     ),
-                  ),
-                  leading: InkWell(
-                    onTap: () {
-                      _scaffoldKey.currentState!.openDrawer();
-                    },
-                    child: const Icon(
-                      Icons.menu_sharp,
+                    leading: InkWell(
+                      onTap: () {
+                        _scaffoldKey.currentState!.openDrawer();
+                      },
+                      child: const Icon(
+                        Icons.menu_sharp,
+                        size: 24,
+                      ),
+                    ),
+                    trailing: const Icon(
+                      Icons.shopping_cart_outlined,
                       size: 24,
                     ),
+                    middle: InkWell(
+                      onTap: () {
+                        _scaffoldKey.currentState!.openDrawer();
+                      },
+                      child: Container(
+                          alignment: Alignment.centerLeft,
+                          padding: const EdgeInsets.only(left: 12),
+                          child: const Text(
+                            'Material Deport',
+                            style: TextStyle(fontSize: 20, letterSpacing: 1),
+                            textAlign: TextAlign.center,
+                          )),
+                    ))
+              ];
+            },
+            body: ListView(
+              shrinkWrap: true,
+              children: [
+                CarouselSlider(
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    aspectRatio: 2.0,
+                    viewportFraction: 1,
                   ),
-                  trailing: const Icon(
-                    Icons.shopping_cart_outlined,
-                    size: 24,
-                  ),
-                  middle: InkWell(
-                    onTap: () {
-                      _scaffoldKey.currentState!.openDrawer();
-                    },
-                    child: Container(
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.only(left: 12),
-                        child: const Text(
-                          'Material Deport',
-                          style: TextStyle(fontSize: 20, letterSpacing: 1),
-                          textAlign: TextAlign.center,
-                        )),
-                  ))
-            ];
-          },
-          body: Container(),
-        ),
+                  items: imageSliders,
+                ),
+                ListView.builder(
+                  itemCount: 10,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    if (index == 2) {
+                      return SizedBox(
+                        height: 150,
+                        child: ListView.builder(
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => Container(
+                            height: 150,
+                            width: 150,
+                            margin: EdgeInsets.all(10),
+                            child: Center(
+                              child: Text(
+                                "Card $index",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            color: Colors.green[700],
+                          ),
+                        ),
+                      );
+                    }
+                    return ListTile(
+                      title: Text("List $index"),
+                    );
+                  },
+                ),
+              ],
+            )),
       ),
     );
   }
-
-// @override
-// Widget build(BuildContext context) {
-//   var deviceSize = MediaQuery.of(context).size;
-//   return Scaffold(
-//       backgroundColor: Colors.white,
-//       appBar: AppBar(),
-//       drawer: const NavBar(),
-//       body: ListView(
-//         scrollDirection: Axis.vertical,
-//         children: [
-//           CarouselSlider(
-//             options: CarouselOptions(
-//               autoPlay: true,
-//               aspectRatio: 2.0,
-//               viewportFraction: 1,
-//             ),
-//             items: imageSliders,
-//           ),
-//           const Padding(
-//             padding: EdgeInsets.only(left: 18, top: 12, bottom: 12),
-//             child: Text(
-//               'Collections by Category',
-//               style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-//             ),
-//           ),
-//           Expanded(
-//             child: ListView.builder(
-//               itemBuilder: (context, index) {
-//                 return Padding(
-//                   padding: EdgeInsets.symmetric(vertical: 16.0),
-//                   child: Column(
-//                     children: <Widget>[
-//                       Text(
-//                         'Header for list $index',
-//                         style: Theme.of(context).textTheme.subtitle2,
-//                       ),
-//                       ListView.builder(
-//                         itemBuilder: (context, index) {
-//                           return Padding(
-//                             padding: EdgeInsets.symmetric(
-//                               horizontal: 16.0,
-//                               vertical: 8.0,
-//                             ),
-//                             child: Text(
-//                               'Nested list item $index',
-//                               style: Theme.of(context).textTheme.subtitle2,
-//                             ),
-//                           );
-//                         },
-//                         itemCount: 4,
-//                         shrinkWrap: true, // todo comment this out and check the result
-//                         physics: ClampingScrollPhysics(), // todo comment this out and check the result
-//                       ),
-//                     ],
-//                   ),
-//                 );
-//               },
-//               itemCount: 9,
-//             ),
-//           ),
-//         ],
-//       )
-//   );
-// }
 }
-
-//
-// List<Widget> _children = () sync* {
-//   yield AspectRatio(
-//     aspectRatio: 16 / 9,
-//     child: ListView(
-//       scrollDirection: Axis.horizontal,
-//       physics: const AlwaysScrollableScrollPhysics(),
-//       children: List.generate(12, (int index) {
-//         return AspectRatio(
-//           aspectRatio: 4 / 3,
-//           child: Padding(
-//             padding: const EdgeInsets.all(12.0),
-//             child: Placeholder(),
-//           ),
-//         );
-//       }),
-//     ),
-//   );
-//
-//   yield* List.generate(
-//     25,
-//         (int index) {
-//       return SizedBox(
-//         height: 160.0,
-//         width: 60.0,
-//         child: Card(
-//           color: index.isEven ? Colors.purpleAccent : Colors.pinkAccent,
-//         ),
-//       );
-//     },
-//   );
-// }()
-//     .toList();
-//
-// @override
-// Widget build(BuildContext context) {
-//   return Scaffold(
-//     appBar: AppBar(
-//       title: Text('Some Text'),
-//     ),
-//     body: ListView(children: _children),
-//   );
-// }
-// }
