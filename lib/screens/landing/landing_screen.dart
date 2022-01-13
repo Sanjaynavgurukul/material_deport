@@ -5,7 +5,9 @@ import 'package:material_depo/model/carousel_model.dart';
 import 'package:material_depo/model/catagory_model.dart';
 import 'package:material_depo/nav_bar/nav_bar.dart';
 import 'package:material_depo/new/home_search_bar.dart';
+import 'package:material_depo/screens/landing/widgets/about.dart';
 import 'package:material_depo/screens/landing/widgets/category_item_widget.dart';
+import 'package:material_depo/screens/landing/widgets/how_its_work.dart';
 
 class LandingScreen extends StatefulWidget {
   static const String routeName = '/landingScreen';
@@ -134,7 +136,7 @@ class _LandingScreenState extends State<LandingScreen> {
                   items: imageSliders,
                 ),
                 ListView.builder(
-                  itemCount: 10,
+                  itemCount: 2,
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
@@ -164,6 +166,8 @@ class _LandingScreenState extends State<LandingScreen> {
                     );
                   },
                 ),
+                const HowItsWork(),
+                const About()
               ],
             )),
       ),
