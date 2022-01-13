@@ -8,7 +8,7 @@ class AppRouter {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
-          builder: (_) => const SplashScreen()
+          builder: (_) => const LandingScreen()
         );
       case LandingScreen.routeName:
         return MaterialPageRoute(
