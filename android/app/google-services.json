@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "430515584505",
+    "project_id": "materialdepot-1e9af",
+    "storage_bucket": "materialdepot-1e9af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430515584505:android:e9eaa6d47d431b53781128",
+        "android_client_info": {
+          "package_name": "com.material.depo.material_depo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "430515584505-19qnj588fp857jpni79qveb8h9u92tu6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTVJZWyO1tnX_27113-ZPzWnOU6soYD7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "430515584505-19qnj588fp857jpni79qveb8h9u92tu6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
