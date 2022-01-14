@@ -1,16 +1,14 @@
+import 'package:badges/badges.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_depo/controller/demo_data.dart';
 import 'package:material_depo/model/carousel_model.dart';
-import 'package:material_depo/model/catagory_model.dart';
 import 'package:material_depo/model/product.dart';
 import 'package:material_depo/nav_bar/nav_bar.dart';
-import 'package:material_depo/new/home_search_bar.dart';
 import 'package:material_depo/screens/landing/bloc/landing_bloc.dart';
 import 'package:material_depo/screens/landing/widgets/about.dart';
-import 'package:material_depo/screens/landing/widgets/category_item_widget.dart';
 import 'package:material_depo/screens/landing/widgets/how_its_work.dart';
 import 'package:material_depo/screens/landing/widgets/list_item.dart';
 
@@ -78,8 +76,27 @@ class _LandingScreenState extends State<LandingScreen> {
       .toList();
 
   List<Widget> rowItems(List<Product> data) => data
-      .map((item) => ListItem(product: item,))
+      .map((item) => ListItem(
+            product: item,
+          ))
       .toList();
+
+  Widget myAppBarIcon() {
+    return Badge(
+      position: BadgePosition.topEnd(top: 0, end: 3),
+      animationDuration: const Duration(milliseconds: 300),
+      animationType: BadgeAnimationType.slide,
+      badgeContent: const Text(
+        '12',
+        style: TextStyle(color: Colors.white, fontSize: 10),
+      ),
+      child: IconButton(
+          icon: const Icon(
+            Icons.shopping_cart,
+          ),
+          onPressed: () {}),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,10 +141,7 @@ class _LandingScreenState extends State<LandingScreen> {
                           size: 24,
                         ),
                       ),
-                      trailing: const Icon(
-                        Icons.shopping_cart_outlined,
-                        size: 24,
-                      ),
+                      trailing: myAppBarIcon(),
                       middle: InkWell(
                         onTap: () {
                           _scaffoldKey.currentState!.openDrawer();
@@ -180,14 +194,16 @@ class _LandingScreenState extends State<LandingScreen> {
                                     fontSize: 18.0,
                                   ),
                                 ),
-                                padding: const EdgeInsets.only(left:12,right:12,top: 4,bottom: 4),
+                                padding: const EdgeInsets.only(
+                                    left: 12, right: 12, top: 4, bottom: 4),
                                 color: Colors.grey.shade200,
                                 width: double.infinity,
                               ),
                               SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(children: rowItems(data.products),)
-                              )
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: rowItems(data.products),
+                                  ))
                               // SizedBox(
                               //   child: ListView.builder(
                               //     shrinkWrap: true,

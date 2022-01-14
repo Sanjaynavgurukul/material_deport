@@ -44,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 20,
             ),
             Text(
-              'Material\nDeport',
+              'Material\nDepot',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 34,

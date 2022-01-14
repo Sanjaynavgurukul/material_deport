@@ -49,6 +49,7 @@ dependencies:
   #Equatable
   equatable: ^2.0.3
   collection: ^1.15.0
+  badges: ^2.0.2
 
 dev_dependencies:
   flutter_test:
