@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.material.depo.material_depo">
    <application
-        android:label="material_depo"
+        android:label="Material Depot"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

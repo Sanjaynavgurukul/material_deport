@@ -198,17 +198,6 @@ class _LandingScreenState extends State<LandingScreen> {
                                   child: Row(
                                     children: rowItems(data.products),
                                   ))
-                              // SizedBox(
-                              //   child: ListView.builder(
-                              //     shrinkWrap: true,
-                              //       itemCount: data.products.length,
-                              //       scrollDirection: Axis.horizontal,
-                              //       itemBuilder: (context, index) {
-                              //         Product p = data.products[index];
-                              //         return ListItem(product: p,);
-                              //       }),
-                              //   height: 200,
-                              // )
                             ],
                           );
                         },
