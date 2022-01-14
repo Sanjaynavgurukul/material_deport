@@ -50,6 +50,7 @@ dependencies:
   equatable: ^2.0.3
   collection: ^1.15.0
   badges: ^2.0.2
+  google_fonts: ^2.2.0
 
 dev_dependencies:
   flutter_test:

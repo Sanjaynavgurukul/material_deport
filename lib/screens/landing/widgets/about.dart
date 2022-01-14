@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:material_depo/screens/about/about_screen.dart';
 
 class About extends StatelessWidget {
   const About({Key? key}) : super(key: key);
@@ -25,8 +26,28 @@ class About extends StatelessWidget {
           ),
           Text(
             about,
-            textAlign: TextAlign.justify,
-            style: TextStyle(fontSize: 14),
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 14),
+          ),const SizedBox(
+            height: 18,
+          ),
+          InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, AboutScreen.routeName);
+            },
+            child: Container(
+              constraints:const  BoxConstraints(
+                maxWidth: 150,
+                minWidth: 150
+              ),
+              alignment: Alignment.center,
+              margin: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.only(left: 12,right: 12,top: 10,bottom: 10),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueAccent,width: 2),
+              ),
+              child: const Text('Read More',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+            ),
           )
         ],
       ),

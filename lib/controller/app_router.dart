@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:material_depo/screens/about/about.dart';
+import 'package:material_depo/screens/about/about_screen.dart';
+import 'package:material_depo/screens/cart/cart_screen.dart';
 import 'package:material_depo/screens/landing/landing_screen.dart';
 import 'package:material_depo/screens/splash_screen/splash_screen.dart';
 
@@ -8,17 +9,13 @@ class AppRouter {
     final Object? key = settings.arguments;
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(
-          builder: (_) => const SplashScreen()
-        );
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
       case LandingScreen.routeName:
-        return MaterialPageRoute(
-            builder: (_) => const LandingScreen()
-        );
-      case About.routeName:
-        return MaterialPageRoute(
-            builder: (_) => const About()
-        );
+        return MaterialPageRoute(builder: (_) => const LandingScreen());
+      case AboutScreen.routeName:
+        return MaterialPageRoute(builder: (_) => const AboutScreen());
+      case CartScreen.routeName:
+        return MaterialPageRoute(builder: (_) => const CartScreen());
       default:
         return null;
     }

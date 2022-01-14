@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class About extends StatelessWidget {
-  const About({Key? key}) : super(key: key);
+class AboutScreen extends StatelessWidget {
+  const AboutScreen({Key? key}) : super(key: key);
   static const routeName = '/about';
 
   final String lineOne = 'Our team is a fusion of minds that come from diverse training. We have a ferocious problem solver, a brilliant coder, a design guru, and an ethical communications manager.';

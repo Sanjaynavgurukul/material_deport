@@ -2,15 +2,17 @@ import 'package:badges/badges.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:material_depo/controller/demo_data.dart';
 import 'package:material_depo/model/carousel_model.dart';
 import 'package:material_depo/model/product.dart';
 import 'package:material_depo/nav_bar/nav_bar.dart';
+import 'package:material_depo/screens/cart/cart_screen.dart';
 import 'package:material_depo/screens/landing/bloc/landing_bloc.dart';
 import 'package:material_depo/screens/landing/widgets/about.dart';
 import 'package:material_depo/screens/landing/widgets/how_its_work.dart';
 import 'package:material_depo/screens/landing/widgets/list_item.dart';
+import 'package:material_depo/screens/landing/widgets/newsletter.dart';
 
 class LandingScreen extends StatefulWidget {
   static const String routeName = '/landingScreen';
@@ -87,31 +89,31 @@ class _LandingScreenState extends State<LandingScreen> {
       animationDuration: const Duration(milliseconds: 300),
       animationType: BadgeAnimationType.slide,
       badgeContent: const Text(
-        '12',
+        '2',
         style: TextStyle(color: Colors.white, fontSize: 10),
       ),
       child: IconButton(
           icon: const Icon(
             Icons.shopping_cart,
           ),
-          onPressed: () {}),
+          onPressed: () {
+            Navigator.pushNamed(context, CartScreen.routeName);
+          }),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        statusBarIconBrightness: Brightness.dark
+    ));
     return BlocProvider(
       create: (_) => LandingBloc()..add(FetchProduct()),
       child: Scaffold(
         key: _scaffoldKey,
         backgroundColor: Colors.white,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            DemoData().addProduct();
-          },
-          child: const Icon(Icons.add),
-        ),
         drawer: const NavBar(),
         body: CupertinoPageScaffold(
           child: NestedScrollView(
@@ -226,7 +228,8 @@ class _LandingScreenState extends State<LandingScreen> {
                     }
                   }),
                   const HowItsWork(),
-                  const About()
+                  const About(),
+                  const NewsLetter()
                 ],
               )),
         ),
