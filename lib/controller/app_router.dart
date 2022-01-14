@@ -9,7 +9,7 @@ class AppRouter {
     final Object? key = settings.arguments;
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
+        return MaterialPageRoute(builder: (_) => const LandingScreen());
       case LandingScreen.routeName:
         return MaterialPageRoute(builder: (_) => const LandingScreen());
       case AboutScreen.routeName:

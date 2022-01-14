@@ -29,44 +29,36 @@ class _LandingScreenState extends State<LandingScreen> {
   final List<Widget> imageSliders = CarouselModel.imgList
       .map((item) => Stack(
             children: <Widget>[
-              Image.network(
-                item.imageUrl!,
-                fit: BoxFit.fitHeight,
-                width: 1000.0,
+              Image.asset(
+                'assets/slider.png',
+                width: 1000,
+                fit: BoxFit.cover,
               ),
               Positioned(
                 bottom: 0.0,
                 left: 0.0,
                 right: 0.0,
                 child: Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color.fromARGB(200, 0, 0, 0),
-                        Color.fromARGB(0, 0, 0, 0)
-                      ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                    ),
-                  ),
                   padding: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 20.0),
                   child: Column(
-                    children: [
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
                       Text(
-                        'Some Title',
-                        style: const TextStyle(
+                        'Banner Title',
+                        style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18.0,
                         ),
                       ),
                       Text(
-                        'Some Description',
-                        style: const TextStyle(
+                        'Banner Description',
+                        style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14.0,
                         ),
                       ),
                     ],
@@ -161,11 +153,12 @@ class _LandingScreenState extends State<LandingScreen> {
               },
               body: ListView(
                 shrinkWrap: true,
+                padding: const EdgeInsets.only(top: 1),
                 children: [
                   CarouselSlider(
                     options: CarouselOptions(
                       autoPlay: true,
-                      aspectRatio: 2.0,
+                      aspectRatio:2,
                       viewportFraction: 1,
                     ),
                     items: imageSliders,
@@ -198,7 +191,6 @@ class _LandingScreenState extends State<LandingScreen> {
                                 ),
                                 padding: const EdgeInsets.only(
                                     left: 12, right: 12, top: 4, bottom: 4),
-                                color: Colors.grey.shade200,
                                 width: double.infinity,
                               ),
                               SingleChildScrollView(
