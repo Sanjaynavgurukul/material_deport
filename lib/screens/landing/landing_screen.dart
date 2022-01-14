@@ -171,7 +171,7 @@ class _LandingScreenState extends State<LandingScreen> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
+                              Container(
                                 child: Text(
                                   data.categoryLabel,
                                   style: const TextStyle(
@@ -180,7 +180,9 @@ class _LandingScreenState extends State<LandingScreen> {
                                     fontSize: 18.0,
                                   ),
                                 ),
-                                padding: const EdgeInsets.all(12),
+                                padding: const EdgeInsets.only(left:12,right:12,top: 4,bottom: 4),
+                                color: Colors.grey.shade200,
+                                width: double.infinity,
                               ),
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
