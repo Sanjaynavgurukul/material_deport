@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductId {
-  String CATEGORY = 'CATEGORY';
-  String MARBLES = 'MARBLES';
-  String CARPETS = 'CARPETS';
+  static const String CATEGORY = 'CATEGORY';
+  static const String MARBLES = 'MARBLES';
+  static const String CARPETS = 'CARPETS';
 }
 
 class Product {
@@ -16,15 +16,15 @@ class Product {
 
   Product(
       {this.productName,
-      this.dbId,
-      this.description,
-      this.price,
-      this.productId,
-      this.productImageUrl});
+        this.dbId,
+        this.description,
+        this.price,
+        this.productId,
+        this.productImageUrl});
 
   Map<String, dynamic> convertLedgerToMap(
-    Product value,
-  ) {
+      Product value,
+      ) {
     Map<String, dynamic> regionData = <String, dynamic>{};
     //Transaction Section :D
     regionData['productName'] = value.productName;
@@ -45,8 +45,10 @@ class Product {
   }
 }
 
+
+
 class Products{
-  String? categoryLabel;
-  Product? products;
-  Products({this.products, this.categoryLabel});
+  late String categoryLabel;
+  late List<Product> products;
+  Products({required this.products, required this.categoryLabel});
 }

@@ -5,12 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_depo/controller/demo_data.dart';
 import 'package:material_depo/model/carousel_model.dart';
 import 'package:material_depo/model/catagory_model.dart';
+import 'package:material_depo/model/product.dart';
 import 'package:material_depo/nav_bar/nav_bar.dart';
 import 'package:material_depo/new/home_search_bar.dart';
 import 'package:material_depo/screens/landing/bloc/landing_bloc.dart';
 import 'package:material_depo/screens/landing/widgets/about.dart';
 import 'package:material_depo/screens/landing/widgets/category_item_widget.dart';
 import 'package:material_depo/screens/landing/widgets/how_its_work.dart';
+import 'package:material_depo/screens/landing/widgets/list_item.dart';
 
 class LandingScreen extends StatefulWidget {
   static const String routeName = '/landingScreen';
@@ -75,6 +77,10 @@ class _LandingScreenState extends State<LandingScreen> {
           ))
       .toList();
 
+  List<Widget> rowItems(List<Product> data) => data
+      .map((item) => ListItem(product: item,))
+      .toList();
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -82,6 +88,7 @@ class _LandingScreenState extends State<LandingScreen> {
       create: (_) => LandingBloc()..add(FetchProduct()),
       child: Scaffold(
         key: _scaffoldKey,
+        backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             DemoData().addProduct();
@@ -96,6 +103,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 return <Widget>[
                   CupertinoSliverNavigationBar(
                       heroTag: 'navigationLedgers',
+                      backgroundColor: Colors.white,
                       largeTitle: Container(
                         padding: const EdgeInsets.only(right: 12),
                         child: CupertinoSearchTextField(
@@ -158,31 +166,38 @@ class _LandingScreenState extends State<LandingScreen> {
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          if (index == 2) {
-                            return SizedBox(
-                              height: 150,
-                              child: ListView.builder(
-                                itemCount: 10,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, index) => Container(
-                                  height: 150,
-                                  width: 150,
-                                  margin: EdgeInsets.all(10),
-                                  child: Center(
-                                    child: Text(
-                                      "${state.data[index].categoryLabel}",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
+                          Products data = state.data[index];
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                child: Text(
+                                  data.categoryLabel,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18.0,
                                   ),
-                                  color: Colors.green[700],
                                 ),
+                                padding: const EdgeInsets.all(12),
                               ),
-                            );
-                          }
-                          return ListTile(
-                            title: Text(
-                              "${state.data[index].categoryLabel}",
-                            ),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(children: rowItems(data.products),)
+                              )
+                              // SizedBox(
+                              //   child: ListView.builder(
+                              //     shrinkWrap: true,
+                              //       itemCount: data.products.length,
+                              //       scrollDirection: Axis.horizontal,
+                              //       itemBuilder: (context, index) {
+                              //         Product p = data.products[index];
+                              //         return ListItem(product: p,);
+                              //       }),
+                              //   height: 200,
+                              // )
+                            ],
                           );
                         },
                       );

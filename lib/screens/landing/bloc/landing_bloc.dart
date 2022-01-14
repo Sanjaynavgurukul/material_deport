@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:material_depo/db/repository.dart';
 import 'package:material_depo/model/product.dart';
@@ -30,13 +31,18 @@ class LandingBloc extends Bloc<LandingEvent, LandingState> {
     });
   }
 
-  List<Products> sortedData(QuerySnapshot product) {
-    final List<Products> data = [];
-    for (var element in product.docs) {
-      Products p = Products();
-      p.categoryLabel = element['productName'];
-      data.add(p);
-    }
-    return data;
+  List<Products> sortedData(QuerySnapshot snap) {
+    List<Product> product =
+        snap.docs.map((doc) => Product.fromDocumentSnapshot(doc)).toList();
+
+    List<String> productId = ['CATEGORY', 'MARBLES', 'CARPETS'];
+
+    return productId
+        .map((category) => Products(
+            categoryLabel: category,
+            products: product
+                .where((product) => product.productId == category)
+                .toList()))
+        .toList();
   }
 }

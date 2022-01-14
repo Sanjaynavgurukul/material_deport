@@ -48,6 +48,7 @@ dependencies:
   rxdart: ^0.27.3
   #Equatable
   equatable: ^2.0.3
+  collection: ^1.15.0
 
 dev_dependencies:
   flutter_test:
